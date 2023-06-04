@@ -5,7 +5,7 @@ class ListNode:
         self.val = val
         self.next = next
 
-def reorder_list(self, head):
+def reorder_list(head):
     
     if not head:
         return None
