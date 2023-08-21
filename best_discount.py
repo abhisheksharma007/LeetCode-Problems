@@ -1,3 +1,21 @@
+# Problem Statement
+# I am ordering Nike Shoes (6000), Puma T-Shirt (1000) and Reebok Jeans (2500)
+
+# Offers: 
+# Puma : 5% discount on purchase of above 1000
+# Nike + Puma : 5% discount on purchase of above 5000
+# Reebok : 10% discount on purchase of above 3000
+
+# But Puma product should not be considered in both offers.
+# As per 1st Offer : 5% for Puma Product
+# As per 2nd Offer : 5% for only Nike Product (As alone Nike product is above 5000)
+
+# But if Puma Product would be of 500 and Nike would be of 4500 then in that case 2nd offer would have been applied as it will give more discount
+
+# Both should be applied 1 and 2
+# We want to reward max reward to the user
+
+
 
 offers = {
     'nike' : {
