@@ -1,5 +1,5 @@
 import time
-
+from collections import defaultdict
 
 board = [["5","3",".",".","7",".",".",".","."]
         ,["6",".",".","1","9","5",".",".","."]
@@ -32,25 +32,16 @@ board2 = [[".",".","4",".",".",".","6","3","."]
         ,[".",".",".",".",".",".",".",".","."]]
 
 def sudoku_checker(board):
-    rows = {}
-    cols = {}
-    squares = {}
+    rows = defaultdict(list)
+    cols = defaultdict(list)
+    squares = defaultdict(list)
 
     for r, v in enumerate(board):
         for c, val in enumerate(v):
             if val == '.':
                 continue
-            
-            if not r in rows:
-                rows[r] = []    
-            if not c in cols:
-                cols[c] = []
-            if not (r//3,c//3) in squares:
-                squares[(r//3,c//3)] = []
-
             if (board[r][c] in rows[r] or board[r][c] in cols[c] or board[r][c] in squares[(r//3,c//3)]):
                 return False
-
             rows[r].append(board[r][c])
             cols[c].append(board[r][c])
             squares[(r//3, c//3)].append(board[r][c])
@@ -69,8 +60,8 @@ def isValidSudoku(board):
 if __name__ == "__main__":
     st = time.process_time()
     res = sudoku_checker(board)
-    print(res)
     # res = isValidSudoku(board)
+    print(res)
     et = time.process_time()
     tt = et - st
     print('CPU Execution time:', tt, 'seconds')
