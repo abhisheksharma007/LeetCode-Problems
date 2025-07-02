@@ -44,4 +44,14 @@ def longest_rep_char(s, k):
 
 s = "ABAB"
 k = 2
+
+s = "AABABBA"
+k = 1
+
+s = "ABBB"
+k = 2
+
+s = "AAAA"
+k = 2
+
 print(longest_rep_char(s, k))
