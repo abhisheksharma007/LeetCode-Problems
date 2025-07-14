@@ -1,0 +1,57 @@
+class Node:
+    def __init__(self, val, next=None, random=None):
+        self.val = val
+        self.next = next
+        self.random = random
+
+
+# Explaination
+
+# eg. 
+# A(C) -> B(A) -> C(NA) -> D(B) -> NA
+
+# 1. 
+# A -> a(A, B) -> B -> b(B, C) -> C -> c(C, D) -> D -> d(D, NA) -> NA
+
+# 2. 
+# A -> a(A, B)(c(C, D)) -> B -> b(B, C)(a(A, B)) -> C -> c(C, D)() -> D -> d(D, NA)(b(B, C)) -> NA
+
+# 3. 
+# new_head: a(A, B)(c(C, D))
+
+# curr: A -> B -> C -> D -> NA
+
+# copy: a(A, B)(c(C, D)) -> b(B, C)(a(A, B)) -> c(C, D)() -> d(D, NA)(b(B, C)) -> NA
+
+# out: a(c) -> b(a) -> c(na) -> d(b) -> NA
+
+
+def copyRandomList(head):
+    if not head:
+        return None
+
+    # 1. Interleave copied nodes with original nodes
+    curr = head
+    while curr:
+        new_node = Node(curr.val, curr.next)
+        curr.next = new_node
+        curr = new_node.next
+
+    # 2. Assign random pointers for the copied nodes
+    curr = head
+    while curr:
+        if curr.random:
+            curr.next.random = curr.random.next
+        curr = curr.next.next
+
+    # 3. Separate the copied list from the original list
+    curr = head
+    new_head = head.next
+    while curr:
+        copy = curr.next
+        curr.next = copy.next
+        if copy.next:
+            copy.next = copy.next.next
+        curr = curr.next
+
+    return new_head
