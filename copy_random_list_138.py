@@ -6,7 +6,7 @@ class Node:
         
         
 # my solution
-def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+def copyRandomList(self, head):
         if not head:
             return None
         
@@ -51,7 +51,7 @@ def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         
 
 
-# Explaination
+# Explaination of three pass algorithm
 
 # eg. 
 # A(C) -> B(A) -> C(NA) -> D(B) -> NA
@@ -72,7 +72,7 @@ def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
 # out: a(c) -> b(a) -> c(na) -> d(b) -> NA
 
 
-# space optimized solution -> three pass solution
+# space optimized solution -> three pass algorithm
 def copyRandomList(head):
     if not head:
         return None
