@@ -3,6 +3,52 @@ class Node:
         self.val = val
         self.next = next
         self.random = random
+        
+        
+# my solution
+def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return None
+        
+        curr = head
+        new_head = None
+        
+        idx_og = {}
+        idx_nn = {}
+        idx_rdm = {}
+        i = 0
+
+        # create copy from old list without random pointers
+        while curr:
+            new_node = Node(curr.val)
+            if not new_head:
+                new_head = new_node
+            
+            if i > 0:
+                idx_nn[i-1].next = new_node
+
+            idx_og[curr] = i
+            idx_nn[i] = new_node
+
+            curr = curr.next
+            i += 1
+
+        curr = head
+        i = 0
+        while curr:
+            idx_rdm[i] = idx_og.get(curr.random, None)
+            curr = curr.next
+            i += 1
+
+        new = new_head
+        i = 0
+        while new:
+            if idx_rdm.get(i) is not None:
+                new.random = idx_nn[idx_rdm[i]]
+            new = new.next
+            i += 1
+        return new_head        
+        
 
 
 # Explaination
@@ -26,6 +72,7 @@ class Node:
 # out: a(c) -> b(a) -> c(na) -> d(b) -> NA
 
 
+# space optimized solution -> three pass solution
 def copyRandomList(head):
     if not head:
         return None
