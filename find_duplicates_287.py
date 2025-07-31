@@ -1,4 +1,4 @@
-# contraint O(1)
+# contraint O(1) space complexity
 
 nums = [1,3,4,2,2]
 # nums = [3,1,3,4,2]
