@@ -1,3 +1,5 @@
+from collections import deque
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -28,7 +30,7 @@ def maxDepth(root):
     if not root:
         return 0
     queue = deque([root])
-    level = 1
+    level = 0
     while queue:
         for i in range(len(queue)): # remove all node from that level then increment the level
             nxt_node = queue.popleft()
